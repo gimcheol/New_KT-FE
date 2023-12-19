@@ -8,7 +8,7 @@ const Buttons = () => {
                 <Container>
                     <Row className="justify-content-center">
                         <Col md="7" className="text-center">
-                            <h1 className="title font-bold">Buttons</h1>
+                            <h1 className="title font-bold">Today News</h1>
                             <h6 className="subtitle">Here you can check Demos we created based on WrapKit. Its quite easy to Create your own dream website &amp; dashboard in No-time.</h6>
                         </Col>
                     </Row>
