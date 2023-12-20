@@ -8,15 +8,31 @@ const HeaderBanner = () => {
         <div className="static-slider-head">
             <Container>
                 <Row className="justify-content-center">
-                    <Col lg="8" md="6" className="align-self-center text-center">
-                        <h1 className="title">Wrapkit Lite</h1>
-                        <h4 className="subtitle font-light">Powerful Reactstrap UI Kit with<br /> Beautiful Pre-Built Demos</h4>
-                        <Link to="/#coming" className="btn btn-md m-t-30 btn-info-gradiant font-14">Meeting</Link>
+                    <Col
+                        lg="8"
+                        md="6"
+                        className="align-self-center text-center"
+                    >
+                        <h1 className="title" style={{ marginTop: "50px" }}>
+                            New KT
+                        </h1>
+                        <h4 className="subtitle font-light">
+                            A tool to conduct your meetings more efficiently.
+                            <br /> " New Keyword Tool "
+                        </h4>
+                        {/* <Link to="/#coming" className="btn btn-outline-primary m-t-40 font-16">Meeting</Link> */}
+                        <Link
+                            to="/#coming"
+                            className="btn btn-md m-t-40 btn-info-gradiant font-16"
+                            style={{ marginTop: "100px" }}
+                        >
+                            Meeting
+                        </Link>
                     </Col>
                 </Row>
             </Container>
         </div>
     );
-}
+};
 
 export default HeaderBanner;
