@@ -8,7 +8,6 @@ import Footer from "../../components/footer/footer.jsx";
 
 // sections for this page
 import Buttons from "./sections/buttons.jsx";
-import CallToAction from "../../components/call-to-action/CallToAction"
 
 
 const Components = () => {
@@ -19,7 +18,6 @@ const Components = () => {
                 <div className="container-fluid">
                     <HeaderBanner />
                     <Buttons />
-                    <CallToAction />
                 </div>
             </div>
             <Footer />
