@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React, { useState } from 'react';
-import { HashLink as Link } from 'react-router-hash-link';
+// import { HashLink as Link } from 'react-router-hash-link';
+import { Link } from 'react-router-dom';
 import { Container, NavbarBrand, Navbar, Nav, NavItem, NavbarToggler, Collapse } from 'reactstrap';
 
 import logo from '../../assets/images/logos/white-text.png';
@@ -25,17 +26,17 @@ const Header = () => {
                             <Nav navbar className="ms-auto">
                                 <NavItem>
                                     <Link className="nav-link" to={"/"}>
-                                        Components
+                                        HOME
                                     </Link>
                                 </NavItem>
                                 <NavItem>
-                                    <Link className="nav-link" to={"/custom-components"}>
-                                        Custom-Components
+                                    <Link className="nav-link" to={"/schedule"}>
+                                        Schedule-Components
                                     </Link>
                                 </NavItem>
                             </Nav>
                             <div className="act-buttons">
-                                <Link to="/#coming" className="btn btn-success-gradiant font-14">Upgrade To Pro</Link>
+                                <Link to={"/login"} className="btn btn-success-gradiant font-14">Login</Link>
                             </div>
                         </Collapse>
                     </Navbar>
