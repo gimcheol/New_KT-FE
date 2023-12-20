@@ -22,8 +22,8 @@ const PageLogin = () => {
                         <Form>
                             <Row>
                                 <FormGroup className="col-md-6">
-                                    <Label htmlFor="name">User Name</Label>
-                                    <Input type="text" className="form-control" id="name" placeholder="Enter Username" />
+                                    <Label htmlFor="name">Email</Label>
+                                    <Input type="text" className="form-control" id="name" placeholder="Ex) a000000@aivle.kt.co.kr" />
                                 </FormGroup>
                             </Row>
                             <Row>

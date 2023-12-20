@@ -2,25 +2,22 @@ import React from "react";
 import PropTypes from "prop-types";
 
 // core components
-import Header from "../../components/header/header.jsx";
-import HeaderBanner2 from "../../components/banner/banner2.jsx";
+import HeaderBanner4 from "../../components/banner/banner4.jsx";
 import Footer from "../../components/footer/footer.jsx";
 
 // sections for this page
-import HeaderComponent from "./sections/headercomponent.jsx";
 import PortfolioComponent from "./sections/portfoliocomponent.jsx";
-import TeamComponent from "./sections/teamcomponent.jsx";
+import PageCalendar from "./sections/mycalendar.jsx";
+// import TeamComponent from "./sections/teamcomponent.jsx";
 
 const ScheduleComponents = () => {
     return (
         <div id="main-wrapper">
-            <Header />
             <div className="page-wrapper">
                 <div className="container-fluid">
-                    <HeaderBanner2 />
-                    <HeaderComponent />
-                    <PortfolioComponent />
-                    <TeamComponent />
+                    <HeaderBanner4 />
+                    <PageCalendar />
+                    {/* <TeamComponent /> */}
                 </div>
             </div>
             <Footer />

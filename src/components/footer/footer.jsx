@@ -9,7 +9,7 @@ const Footer = () => {
                 <Row>
                     <Col lg="3" md="6" className="m-b-30">
                         <h5 className="m-b-20">Address</h5>
-                        <p>71 Amsteroum Avenue Cronish Night, NY 35098</p>
+                        <p>(주)케이티 경기도 성남시 분당구 불정로 90(정자동)</p>
                     </Col>
                     <Col lg="3" md="6" className="m-b-30">
                         <h5 className="m-b-20">Phone</h5>
@@ -34,7 +34,7 @@ const Footer = () => {
                     <Row>
                         <Col md="12">
                             <div className="d-flex font-14 justify-content-between">
-                                <div className="m-t-10 m-b-10 copyright">All Rights Reserved by WrapPixel.</div>
+                                <div className="m-t-10 m-b-10 copyright">All Rights Reserved by New KT.</div>
                                 <div className="links ms-auto m-t-10 m-b-10">
                                     <a href="#" className="p-10 p-l-0">Terms of Use</a>
                                     <a href="#" className="p-10">Legal Disclaimer</a>

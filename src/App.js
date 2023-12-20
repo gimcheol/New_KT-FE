@@ -17,13 +17,13 @@ import React from "react";
 import Components from "./views/components/components.jsx";
 import ScheduleComponents from "./views/schedule-components/schedule-components.jsx";
 import Login from "./views/check-components/check-components.jsx";
-import Join from "./views/check-components/sections/join.jsx"
+import SignupForm from "./views/check-components/sections/join.jsx"
 
 function App() {
   return (
     <Routes>
       <Route path="/schedule" element={<ScheduleComponents />} />
-      <Route path="/join" element={<Join />} />
+      <Route path="/join" element={<SignupForm />} />
       <Route path="/login" element={<Login />} />
       <Route path="/" element={<Components />} />
     </Routes>
