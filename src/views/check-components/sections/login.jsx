@@ -1,14 +1,5 @@
 import React from "react";
-import {
-    Container,
-    Row,
-    Col,
-    Form,
-    FormGroup,
-    Label,
-    Input,
-    Button,
-} from "reactstrap";
+import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 
 const PageLogin = () => {
@@ -38,7 +29,7 @@ const PageLogin = () => {
                                     type="text"
                                     className="form-control"
                                     id="name"
-                                    placeholder="Enter Username"
+                                    placeholder="Ex) a000000@aivle.kt.co.kr"
                                 />
                             </FormGroup>
                             <FormGroup>
