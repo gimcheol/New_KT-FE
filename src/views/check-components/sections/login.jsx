@@ -1,7 +1,15 @@
-import React from 'react';
-import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
-// import { HashLink as Link } from 'react-router-hash-link';
-import { Link } from 'react-router-dom';
+import React from "react";
+import {
+    Container,
+    Row,
+    Col,
+    Form,
+    FormGroup,
+    Label,
+    Input,
+    Button,
+} from "reactstrap";
+import { Link } from "react-router-dom";
 
 const PageLogin = () => {
     return (
@@ -11,44 +19,70 @@ const PageLogin = () => {
                     <Row className="justify-content-center">
                         <Col md="7" className="text-center">
                             <h1 className="title font-bold">Login</h1>
-                            <h6 className="subtitle">Here you can check Demos we created based on WrapKit. Its quite easy to Create your own dream website &amp; dashboard in No-time.</h6>
+                            <h6 className="subtitle">
+                                Here you can check Demos we created based on
+                                WrapKit. It's quite easy to create your own
+                                dream website &amp; dashboard in no time.
+                            </h6>
                         </Col>
                     </Row>
                 </Container>
             </div>
             <Container>
                 <Row className="justify-content-center">
-                    <Col md="12" style={{ paddingBottom: '100px' }}>
+                    <Col md="6" style={{ paddingBottom: "100px" }}>
                         <Form>
-                            <Row>
-                                <FormGroup className="col-md-6">
-                                    <Label htmlFor="name">Email</Label>
-                                    <Input type="text" className="form-control" id="name" placeholder="Ex) a000000@aivle.kt.co.kr" />
-                                </FormGroup>
-                            </Row>
-                            <Row>
-                                <FormGroup className="col-md-6">
-                                    <Label htmlFor="password">Password</Label>
-                                    <Input type="password" className="form-control" id="password" placeholder="Password" />
-                                </FormGroup>
-                            </Row>
-                            
-                            <FormGroup className="col-md-12 ml-3">
-                                <Input id="checkbox1" type="checkbox" />
-                                <Label htmlFor="checkbox1"> Remember me </Label>
+                            <FormGroup>
+                                <Label htmlFor="name">Email</Label>
+                                <Input
+                                    type="text"
+                                    className="form-control"
+                                    id="name"
+                                    placeholder="Enter Username"
+                                />
                             </FormGroup>
-                            <Col md="12">
-                                <Button type="submit" className="btn btn-success waves-effect waves-light m-r-10">Submit</Button>
+                            <FormGroup>
+                                <Label htmlFor="password">Password</Label>
+                                <Input
+                                    type="password"
+                                    className="form-control"
+                                    id="password"
+                                    placeholder="Password"
+                                />
+                            </FormGroup>
+                            <FormGroup check className="ml-3 mb-3">
+                                <Input
+                                    id="checkbox1"
+                                    type="checkbox"
+                                    className="form-check-input"
+                                />
+                                <Label
+                                    htmlFor="checkbox1"
+                                    className="form-check-label"
+                                >
+                                    {" "}
+                                    Remember me{" "}
+                                </Label>
+                            </FormGroup>
+                            <div className="text-center">
+                                <Button
+                                    type="submit"
+                                    className="btn btn-success waves-effect waves-light m-r-10"
+                                >
+                                    Submit
+                                </Button>
                                 <Link to="/join">
-                                    <Button className="btn btn-inverse waves-effect waves-light">Join</Button>
+                                    <Button className="btn btn-inverse waves-effect waves-light">
+                                        Join
+                                    </Button>
                                 </Link>
-                            </Col>
+                            </div>
                         </Form>
                     </Col>
                 </Row>
             </Container>
         </div>
     );
-}
+};
 
 export default PageLogin;
