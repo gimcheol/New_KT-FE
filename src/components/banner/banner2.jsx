@@ -1,13 +1,6 @@
-<<<<<<<< HEAD:src/components/banner/banner2.jsx
-import React from 'react';
-// import { HashLink as Link } from 'react-router-hash-link';
-import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
-========
 import React from "react";
-import { HashLink as Link } from "react-router-hash-link";
+import { Link } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
->>>>>>>> hy:src/components/banner2/banner2.jsx
 
 const HeaderBanner2 = () => {
     return (
@@ -19,7 +12,11 @@ const HeaderBanner2 = () => {
                         md="6"
                         className="align-self-center text-center"
                     >
-                        <h1 className="title">Wrapkit Lite</h1>
+                        {/* 추가된 부분 */}
+                        <Link to="/">
+                            <h1 className="title">Wrapkit Lite</h1>
+                        </Link>
+                        {/* ------------------ */}
                         <h4 className="subtitle font-light">
                             Free Reactstrap UI Kit with
                             <br /> Lots of Ready to Use Sections

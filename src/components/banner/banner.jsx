@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 // import { HashLink as Link } from 'react-router-hash-link';
-import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
+import { Link } from "react-router-dom";
+import { Container, Row, Col } from "reactstrap";
 
 const HeaderBanner = () => {
     return (
@@ -20,7 +20,6 @@ const HeaderBanner = () => {
                             A tool to conduct your meetings more efficiently.
                             <br /> " New Keyword Tool "
                         </h4>
-                        {/* <Link to="/#coming" className="btn btn-outline-primary m-t-40 font-16">Meeting</Link> */}
                         <Link
                             to="/#coming"
                             className="btn btn-md m-t-40 btn-info-gradiant font-16"
