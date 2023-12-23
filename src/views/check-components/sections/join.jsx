@@ -1,3 +1,4 @@
+//join.jsx
 import React, { useState } from "react";
 import {
     Container,
@@ -12,6 +13,7 @@ import {
 
 import HeaderBanner3 from "../../../components/banner/banner3.jsx";
 import Footer from "../../../components/footer/footer.jsx";
+import TermsModal from "./join_modal.jsx";
 
 const validatePwd = (password) => {
     const hasNumber = /[0-9]/.test(password);
@@ -31,15 +33,64 @@ const validatePwd = (password) => {
     }
 };
 
+
 const SignupForm = () => {
     const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    // 약관 동의 상태를 저장하는 state 추가
+    const [isAgreed, setIsAgreed] = useState(false);
+
+
+    const handleUserNameChange = (e) => {
+        setUserName(e.target.value);
+    };
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+    };
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+    };
+
+    const handleConfirmPasswordChange = (e) => {
+        setConfirmPassword(e.target.value);
+    };
+
+    // 모달을 열기 위한 핸들러
+    const handleTermsClick = () => {
+        // Open the modal only if the user has agreed
+        if (!isAgreed) {
+            setIsModalOpen(true);
+        }
+        // You can add an else statement here if you want to handle the case when the user hasn't agreed.
+    };
+
+    // 약관 동의 체크박스의 onChange 핸들러
+    const handleAgreeCheckboxChange = () => {
+        setIsAgreed(!isAgreed);
+    };
+
+    // 모달에서 확인 버튼을 눌렀을 때의 동작을 정의
+    const handleModalConfirm = () => {
+        // 예를 들어, 모달을 닫거나 다른 작업을 수행할 수 있습니다.
+        setIsAgreed(true); // 모달에서 확인했을 때 약관 동의로 처리하는 예시
+        setIsModalOpen(false); // 모달 닫기
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        // 약관 동의 여부 확인
+        if (!isAgreed) {
+            setErrorMsg("약관에 동의해주세요.");
+            return;
+        }
 
         if (!validatePwd(password)) {
             setErrorMsg(
@@ -52,9 +103,34 @@ const SignupForm = () => {
             setErrorMsg("Password does not match the confirmation password.");
             return;
         }
-
+        
         setErrorMsg(""); // 비밀번호가 유효하면 오류 메시지를 지움
-        console.log("success"); // 비밀번호가 규칙에 맞으면 success를 콘솔에 출력
+        
+        fetch("https://9714-211-216-239-233.ngrok-free.app/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify({
+                "username": userName,
+                "password": password,
+                "email": email,
+            }),
+        })
+        .then(res => {
+            if (res.status === 201) {
+                alert("회원 가입이 완료되었습니다.");
+                window.location.href = "/login";
+            } else if (res.status === 400) {
+                return res.json();
+            }
+        })
+        .then(res => {
+            console.log("에러 메시지 ->", res.message);
+        })
+
+        // console.log("success"); // 비밀번호가 규칙에 맞으면 success를 콘솔에 출력
         // 비밀번호가 규칙에 맞으면 회원가입 로직을 실행
     };
 
@@ -86,6 +162,8 @@ const SignupForm = () => {
                                     className="form-control"
                                     id="name"
                                     placeholder="Enter Username"
+                                    value={userName}
+                                    onChange={handleUserNameChange}
                                 />
                             </FormGroup>
 
@@ -96,6 +174,8 @@ const SignupForm = () => {
                                     className="form-control"
                                     id="email"
                                     placeholder="Ex) a000000@aivle.kt.co.kr"
+                                    value={email}
+                                    onChange={handleEmailChange}
                                 />
                             </FormGroup>
 
@@ -107,9 +187,7 @@ const SignupForm = () => {
                                     id="password"
                                     placeholder="Password"
                                     value={password}
-                                    onChange={(e) =>
-                                        setPassword(e.target.value)
-                                    }
+                                    onChange={handlePasswordChange}
                                 />
                                 {errorMsg && (
                                     <div style={{ color: "red" }}>
@@ -128,9 +206,7 @@ const SignupForm = () => {
                                     id="confirmpwd"
                                     placeholder="Confirm Password"
                                     value={confirmPassword}
-                                    onChange={(e) =>
-                                        setConfirmPassword(e.target.value)
-                                    }
+                                    onChange={handleConfirmPasswordChange}
                                 />
                                 {confirmPassword !== password && (
                                     <div style={{ color: "red" }}>
@@ -138,19 +214,28 @@ const SignupForm = () => {
                                     </div>
                                 )}
                             </FormGroup>
+
                             <div className="text-center">
                                 <FormGroup>
-                                    <Input id="checkbox1" type="checkbox" />
-                                    <Label htmlFor="checkbox1">
-                                        {" "}
-                                        약관 동의{" "}
-                                    </Label>
+                                    {/* 체크박스와 함께 "약관 동의" 글을 클릭 시 모달을 열도록 변경 */}
+                                    <span style={{ cursor: "pointer", color: "blue" }} onClick={handleTermsClick}>
+                                        <input
+                                            id="checkbox1"
+                                            type="checkbox"
+                                            checked={isAgreed}
+                                            onChange={handleAgreeCheckboxChange}
+                                        />
+                                        {" "}약관 동의
+                                    </span>
                                 </FormGroup>
+
+                                <TermsModal isOpen={isModalOpen} toggleModal={() => setIsModalOpen(!isModalOpen)} onConfirm={handleModalConfirm} />
 
                                 <Button
                                     type="submit"
                                     onClick={handleSubmit}
-                                    className="btn btn-success waves-effect waves-light m-r-10"
+                                    className={`btn btn-success waves-effect waves-light m-r-10 ${!isAgreed ? 'disabled' : ''}`}
+                                    disabled={!isAgreed}
                                 >
                                     Submit
                                 </Button>

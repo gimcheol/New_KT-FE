@@ -1,8 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 
 const PageLogin = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+    };
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        fetch("https://9714-211-216-239-233.ngrok-free.app/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify({
+                "email": email,
+                "password": password,
+            }),
+        })
+        .then(res => {
+            if (res.status !== 200) {
+                throw Error(res);
+            }
+            return res.json();
+        })
+        .then(res => {
+            alert(`${res.username}님 환영합니다.`);
+            window.location.href = "/Home";
+
+        })
+        .catch((err) => {
+            console.error(err);
+        })
+    }
+
     return (
         <div>
             <div className="spacer" id="forms-component">
@@ -30,6 +71,8 @@ const PageLogin = () => {
                                     className="form-control"
                                     id="name"
                                     placeholder="Ex) a000000@aivle.kt.co.kr"
+                                    value={email}
+                                    onChange={handleEmailChange}
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -39,6 +82,8 @@ const PageLogin = () => {
                                     className="form-control"
                                     id="password"
                                     placeholder="Password"
+                                    value={password}
+                                    onChange={handlePasswordChange}
                                 />
                             </FormGroup>
                             <FormGroup check className="ml-3 mb-3">
@@ -58,6 +103,7 @@ const PageLogin = () => {
                             <div className="text-center">
                                 <Button
                                     type="submit"
+                                    onClick={handleSubmit}
                                     className="btn btn-success waves-effect waves-light m-r-10"
                                 >
                                     Submit
