@@ -2,22 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 
 // core components
-import Header from "../../components/header/header.jsx";
-import HeaderBanner from "../../components/banner/banner.jsx";
+import HeaderBanner4 from "../../components/banner/banner4.jsx";
 import Footer from "../../components/footer/footer.jsx";
 
 // sections for this page
-import Buttons from "./sections/buttons.jsx";
+// import PortfolioComponent from "./sections/portfoliocomponent.jsx";
+import TeamComponent from "./sections/teamcomponent.jsx";
 
-
-const Components = () => {
+const AboutComponents = () => {
     return (
         <div id="main-wrapper">
-            <Header />
             <div className="page-wrapper">
                 <div className="container-fluid">
-                    <HeaderBanner />
-                    {/* <Buttons /> */}
+                    <HeaderBanner4 />
+                    <TeamComponent />
                 </div>
             </div>
             <Footer />
@@ -25,8 +23,8 @@ const Components = () => {
     );
 }
 
-Components.propTypes = {
+AboutComponents.propTypes = {
     classes: PropTypes.object
 };
 
-export default Components;
+export default AboutComponents;

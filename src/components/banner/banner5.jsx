@@ -15,7 +15,7 @@ import {
 
 import logo from "../../assets/images/logos/New_KT_header.png";
 
-const HeaderBanner4 = () => {
+const HeaderBanner5 = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
@@ -43,8 +43,8 @@ const HeaderBanner4 = () => {
                                 </Link>
                             </NavItem>
                             <NavItem className="active">
-                                <Link to="/meeting" className="nav-link">
-                                    Meeting
+                                <Link to="/schedule" className="nav-link">
+                                    Schedule
                                 </Link>
                             </NavItem>
                             <NavItem className="active">
@@ -65,4 +65,4 @@ const HeaderBanner4 = () => {
     );
 };
 
-export default HeaderBanner4;
+export default HeaderBanner5;

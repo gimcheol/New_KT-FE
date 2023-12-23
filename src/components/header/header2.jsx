@@ -50,7 +50,11 @@ const Header = () => {
                                         HOME
                                     </Link>
                                 </NavItem>
-                                
+                                <NavItem>
+                                    <Link className="nav-link" to={"/schedule"}>
+                                        Schedule
+                                    </Link>
+                                </NavItem>
                                 <NavItem>
                                     <Link className="nav-link" to={"/about"}>
                                         About
@@ -59,10 +63,10 @@ const Header = () => {
                             </Nav>
                             <div className="act-buttons">
                                 <Link
-                                    to={"/login"}
+                                    to={"/"}
                                     className="btn btn-success-gradiant font-14"
                                 >
-                                    Login
+                                    Logout
                                 </Link>
                             </div>
                         </Collapse>

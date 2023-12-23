@@ -1,10 +1,11 @@
 import React from "react";
+// import { HashLink as Link } from 'react-router-hash-link';
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
 
 const HeaderBanner2 = () => {
     return (
-        <div className="static-slider-head banner2">
+        <div className="static-slider-head">
             <Container>
                 <Row className="justify-content-center">
                     <Col
@@ -12,26 +13,19 @@ const HeaderBanner2 = () => {
                         md="6"
                         className="align-self-center text-center"
                     >
-                        {/* 추가된 부분 */}
-                        <Link to="/">
-                            <h1 className="title">Wrapkit Lite</h1>
-                        </Link>
-                        {/* ------------------ */}
+                        <h1 className="title" style={{ marginTop: "50px" }}>
+                            New KT
+                        </h1>
                         <h4 className="subtitle font-light">
-                            Free Reactstrap UI Kit with
-                            <br /> Lots of Ready to Use Sections
+                            A tool to conduct your meetings more efficiently.
+                            <br /> " New Keyword Tool "
                         </h4>
-                        <a
-                            href="https://wrappixel.com/templates/wrapkit-react-lite/"
-                            className="btn btn-outline-light m-r-20 btn-md m-t-30 font-14"
-                        >
-                            Download Free
-                        </a>
                         <Link
-                            to="/#coming"
-                            className="btn btn-md m-t-30 btn-info-gradiant font-14"
+                            to="/meeting"
+                            className="btn btn-md m-t-40 btn-info-gradiant font-16"
+                            style={{ marginTop: "100px" }}
                         >
-                            Upgrade To Pro
+                            Meeting
                         </Link>
                     </Col>
                 </Row>

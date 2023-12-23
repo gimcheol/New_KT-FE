@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 
 // core components
-import Header from "../../components/header/header.jsx";
-import HeaderBanner from "../../components/banner/banner.jsx";
+import Header2 from "../../components/header/header2.jsx";
+import HeaderBanner2 from "../../components/banner/banner2.jsx";
 import Footer from "../../components/footer/footer.jsx";
 
 // sections for this page
@@ -13,11 +13,11 @@ import Buttons from "./sections/buttons.jsx";
 const Components = () => {
     return (
         <div id="main-wrapper">
-            <Header />
+            <Header2 />
             <div className="page-wrapper">
                 <div className="container-fluid">
-                    <HeaderBanner />
-                    {/* <Buttons /> */}
+                    <HeaderBanner2 />
+                    <Buttons />
                 </div>
             </div>
             <Footer />
