@@ -15,3 +15,7 @@
     color: blue;
 }
 
+.custom-add-button {
+    background-color: purple; /* 원하는 색상으로 변경 */
+    /* 다른 스타일 속성들도 추가 가능 */
+}
