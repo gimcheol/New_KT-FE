@@ -120,15 +120,16 @@ const SignupForm = () => {
             }),
         })
         .then(res => {
-            if (res.status === 201) {
-                alert("회원 가입이 완료되었습니다.");
-                window.location.href = "/login";
-            } else if (res.status === 400) {
-                return res.json();
-            }
+            if (res.status !== 201) {
+                throw Error(res);
+            } return res.json();
         })
         .then(res => {
-            console.log("에러 메시지 ->", res.message);
+            alert("회원 가입이 완료되었습니다.");
+            window.location.href = "/login";
+        })
+        .catch((err) => {
+            console.error(err);
         })
 
         // console.log("success"); // 비밀번호가 규칙에 맞으면 success를 콘솔에 출력

@@ -35,6 +35,9 @@ const PageLogin = () => {
             return res.json();
         })
         .then(res => {
+            localStorage.setItem('accessToken', res.access);
+            localStorage.setItem('refreshToken', res.refresh);
+            
             alert(`${res.username}님 환영합니다.`);
             window.location.href = "/Home";
 
