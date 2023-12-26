@@ -10,13 +10,14 @@ import {
     Row,
     Container,
 } from "reactstrap";
-import "../css/EventModal.css"; // 추가된 CSS 파일
+import "../css/EventModal.css";
 
 const EventModal = ({
     isOpen,
     onClose,
     eventTitle,
-    eventDate,
+    eventStartDate,
+    eventEndDate,
     eventKeyword,
     eventSummary,
     eventMemo,
@@ -27,7 +28,7 @@ const EventModal = ({
             {/* 추가된 className */}
             <ModalHeader toggle={onClose}>
                 <div className="fs-1">{eventTitle}</div>
-                <div className="fs-6">{eventDate}</div>
+                <div className="fs-6">{`${eventStartDate} - ${eventEndDate}`}</div>
             </ModalHeader>
             <ModalBody className="d-flex flex-column gap-3">
                 <Row>
@@ -38,11 +39,15 @@ const EventModal = ({
                         </div>
                     </Col>
                     <Col>
-                      <h3>요약</h3>
+                      <h3>기사</h3>
                         <div>
                             <p>{eventSummary}</p>
                         </div>
                     </Col>
+                </Row>
+                <Row>
+                  <h3>회의 요약</h3>
+                  <p>{eventSummary}</p>
                 </Row>
                 <Row>
                   <h3>메모</h3>

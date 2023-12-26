@@ -1,6 +1,4 @@
 //mycalendar.jsx
-import { Badge, Button } from "reactstrap";
-
 import React, { useState } from "react";
 
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -17,8 +15,8 @@ const MyCalendar = () => {
     const [isAddEventModalOpen, setAddEventModalOpen] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [events, setEvents] = useState([
-        {id:1, title: 'react1', date: '2023-12-23', memo: '연습' },
-        {id:2, title: 'react2', date: '2023-12-23', memo: '연습2' },
+        { id: 1, title: 'react1', start: '2023-12-23T08:00:00', end: '2023-12-24T17:00:00', memo: '연습' },
+        { id: 2, title: 'react2', start: '2023-12-26T10:00:00', end: '2023-12-27T15:30:00', memo: '연습2' },
     ]); // State to store events
     
 
@@ -60,6 +58,7 @@ const MyCalendar = () => {
                     start: 'prev,next today',
                     center: 'title',
                     end: 'dayGridMonth,dayGridWeek,dayGridDay addEventButton',
+                    
                 }}
 
                 customButtons={{
@@ -85,7 +84,8 @@ const MyCalendar = () => {
                 isOpen={!!selectedEvent}
                 onClose={handleModalClose}
                 eventTitle={selectedEvent ? selectedEvent.title : ''}
-                eventDate={selectedEvent ? selectedEvent.date : ''}
+                eventStartDate={selectedEvent ? selectedEvent.start : ''}
+                eventEndDate={selectedEvent ? selectedEvent.end : ''}
                 eventKeyword={'/* 여기에 키워드 값이 들어가야 함 */'}
                 eventSummary={'/* 여기에 요약 값이 들어가야 함 */'}
                 eventMemo={selectedEvent ? selectedEvent.memo : ''}
