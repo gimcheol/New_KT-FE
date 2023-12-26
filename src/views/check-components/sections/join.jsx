@@ -14,6 +14,7 @@ import {
 import HeaderBanner3 from "../../../components/banner/banner3.jsx";
 import Footer from "../../../components/footer/footer.jsx";
 import TermsModal from "./join_modal.jsx";
+import { set } from "immutable";
 
 const validatePwd = (password) => {
     const hasNumber = /[0-9]/.test(password);
@@ -217,19 +218,28 @@ const SignupForm = () => {
 
                             <div className="text-center">
                                 <FormGroup>
-                                    {/* 체크박스와 함께 "약관 동의" 글을 클릭 시 모달을 열도록 변경 */}
-                                    <span style={{ cursor: "pointer", color: "blue" }} onClick={handleTermsClick}>
+                                    <span
+                                        style={{ cursor: "pointer", color: isAgreed ? "gray" : "blue" }}
+                                        onClick={!isAgreed ? handleTermsClick : undefined}
+                                    >
                                         <input
                                             id="checkbox1"
                                             type="checkbox"
                                             checked={isAgreed}
                                             onChange={handleAgreeCheckboxChange}
+                                            disabled={isAgreed}
                                         />
                                         {" "}약관 동의
                                     </span>
                                 </FormGroup>
 
-                                <TermsModal isOpen={isModalOpen} toggleModal={() => setIsModalOpen(!isModalOpen)} onConfirm={handleModalConfirm} />
+                                <TermsModal
+                                    isOpen={isModalOpen}
+                                    toggleModal={() => setIsModalOpen(!isModalOpen)}
+                                    onConfirm={handleModalConfirm}
+                                    isAgreed={isAgreed}
+                                    onAgreementChange={setIsAgreed}
+                                />
 
                                 <Button
                                     type="submit"
