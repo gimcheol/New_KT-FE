@@ -46,13 +46,13 @@ const SignupForm = () => {
     // 약관 동의 상태를 저장하는 state 추가
     const [isAgreed, setIsAgreed] = useState(false);
 
-
-    const handleUserNameChange = (e) => {
-        setUserName(e.target.value);
-    };
-
     const handleEmailChange = (e) => {
-        setEmail(e.target.value);
+        const emailValue = e.target.value;
+        setEmail(emailValue);
+
+        // "@" 기호 이전의 부분을 username으로 설정
+        const usernameFromEmail = emailValue.split('@')[0];
+        setUserName(usernameFromEmail);
     };
 
     const handlePasswordChange = (e) => {
@@ -153,11 +153,11 @@ const SignupForm = () => {
                     </Row>
                 </Container>
             </div>
-            <Container style={{ paddingBottom: "100px" }}>
+            <Container style={{ paddingBottom: "69px" }}>
                 <Row className="justify-content-center">
                     <Col md="6">
                         <Form>
-                            <FormGroup>
+                            {/* <FormGroup>
                                 <Label htmlFor="name">User Name</Label>
                                 <Input
                                     type="text"
@@ -167,7 +167,7 @@ const SignupForm = () => {
                                     value={userName}
                                     onChange={handleUserNameChange}
                                 />
-                            </FormGroup>
+                            </FormGroup> */}
 
                             <FormGroup>
                                 <Label htmlFor="email">Email Address</Label>

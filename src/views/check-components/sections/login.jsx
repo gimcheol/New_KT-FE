@@ -3,11 +3,11 @@ import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from "reac
 import { Link } from "react-router-dom";
 
 const PageLogin = () => {
-    const [email, setEmail] = useState("");
+    const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
+    const handleUserNameChange = (e) => {
+        setUserName(e.target.value);
     };
 
     const handlePasswordChange = (e) => {
@@ -24,7 +24,7 @@ const PageLogin = () => {
             },
 
             body: JSON.stringify({
-                "email": email,
+                "username": userName,
                 "password": password,
             }),
         })
@@ -65,17 +65,17 @@ const PageLogin = () => {
             </div>
             <Container>
                 <Row className="justify-content-center">
-                    <Col md="6" style={{ paddingBottom: "100px" }}>
+                    <Col md="6" style={{ paddingBottom: "180px" }}>
                         <Form>
                             <FormGroup>
-                                <Label htmlFor="name">Email</Label>
+                                <Label htmlFor="name">ID</Label>
                                 <Input
                                     type="text"
                                     className="form-control"
                                     id="name"
-                                    placeholder="Ex) a000000@aivle.kt.co.kr"
-                                    value={email}
-                                    onChange={handleEmailChange}
+                                    placeholder="a000000"
+                                    value={userName}
+                                    onChange={handleUserNameChange}
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -89,7 +89,8 @@ const PageLogin = () => {
                                     onChange={handlePasswordChange}
                                 />
                             </FormGroup>
-                            <FormGroup check className="ml-3 mb-3">
+
+                            {/* <FormGroup check className="ml-3 mb-3">
                                 <Input
                                     id="checkbox1"
                                     type="checkbox"
@@ -102,8 +103,9 @@ const PageLogin = () => {
                                     {" "}
                                     Remember me{" "}
                                 </Label>
-                            </FormGroup>
-                            <div className="text-center">
+                            </FormGroup> */}
+                            
+                            <div className="text-center" style={{ marginTop: "30px" }}>
                                 <Button
                                     type="submit"
                                     onClick={handleSubmit}
