@@ -33,6 +33,8 @@ const MyCalendar = () => {
             meeting: true, keyword: '연습', summary: '연습 중'},
         {id:5, title: '연습2', start: '2023-12-27T23:10:00', end: '2023-12-27T23:17:00', memo: '연습22',
             meeting: false, keyword: '연습', summary: '연습 중'},
+        {id:6, title: '그룹미팅', start: '2023-12-28T16:10:00', end: '2023-12-27T17:00:00', memo: '그룹미팅 준비해두기 1시간 30분 소요 예정',
+            meeting: false, keyword: '마약', summary: '마약 안돼요'},
     ]);
 
     const handleAddButton=()=>{

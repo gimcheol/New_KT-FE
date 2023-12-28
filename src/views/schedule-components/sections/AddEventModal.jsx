@@ -23,26 +23,62 @@ const AddEventModal = ({ isOpen, onClose, onSave }) => {
     const [eventMemo, setEventMemo] = useState("");
 
     const handleSaveEvent = () => {
-        // Save the event data
-        const newEvent = {
-            title: eventTitle,
-            start: meeting ? `${startEventDate}T${startTime}:00` : startEventDate,
-            end: meeting ? `${startEventDate}T${endTime}:00` : endEventDate,
-            memo: eventMemo,
-            meeting: meeting,
-        };
-        onSave(newEvent);
-        console.log("newEvent:", newEvent);
+        // // Save the event data
+        // const newEvent = {
+        //     title: eventTitle,
+        //     start: meeting ? `${startEventDate}T${startTime}:00` : startEventDate,
+        //     end: meeting ? `${startEventDate}T${endTime}:00` : endEventDate,
+        //     memo: eventMemo,
+        //     meeting: meeting,
+        // };
+        // onSave(newEvent);
+        // console.log("newEvent:", newEvent);
 
-        // Reset the form and close the modal
-        setEventTitle("");
-        setStartEventDate("");
-        setStartTime("");
-        setEndEventDate("");
-        setEndTime("");
-        setMeetingDay(false);
-        setEventMemo("");
-        onClose();
+        // // Reset the form and close the modal
+        // setEventTitle("");
+        // setStartEventDate("");
+        // setStartTime("");
+        // setEndEventDate("");
+        // setEndTime("");
+        // setMeetingDay(false);
+        // setEventMemo("");
+        // onClose();
+
+        fetch("https://9714-211-216-239-233.ngrok-free.app/schedule", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                title: eventTitle,
+                start: meeting ? `${startEventDate}T${startTime}:00` : startEventDate,
+                end: meeting ? `${startEventDate}T${endTime}:00` : endEventDate,
+                memo: eventMemo,
+                meeting: meeting,
+            }),
+        })
+        .then(res => {
+            if (res.status !== 201) {
+                throw Error(res);
+            } return res.json();
+        })
+        .then(newEvent => {
+            onSave(newEvent);
+            console.log("newEvent:", newEvent);
+
+            // Reset the form and close the modal
+            setEventTitle("");
+            setStartEventDate("");
+            setStartTime("");
+            setEndEventDate("");
+            setEndTime("");
+            setMeetingDay(false);
+            setEventMemo("");
+            onClose();
+        })
+        .catch((err) => {
+            console.error(err);
+        })
     };
 
     return (
