@@ -107,7 +107,7 @@ const SignupForm = () => {
         
         setErrorMsg(""); // 비밀번호가 유효하면 오류 메시지를 지움
         
-        fetch("https://9714-211-216-239-233.ngrok-free.app/signup", {
+        fetch("http://127.0.0.1:8000/api/register/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -115,8 +115,9 @@ const SignupForm = () => {
 
             body: JSON.stringify({
                 "username": userName,
-                "password": password,
                 "email": email,
+                "password": password,
+                "password2": confirmPassword,
             }),
         })
         .then(res => {

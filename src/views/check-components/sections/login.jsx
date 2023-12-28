@@ -17,7 +17,7 @@ const PageLogin = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        fetch("https://9714-211-216-239-233.ngrok-free.app/login", {
+        fetch("http://127.0.0.1:8000/api/token/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
