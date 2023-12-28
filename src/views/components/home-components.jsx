@@ -17,7 +17,7 @@ const Components = () => {
             <div className="page-wrapper">
                 <div className="container-fluid">
                     <HeaderBanner2 />
-                    <Buttons />
+                    {/* <Buttons /> */}
                 </div>
             </div>
             <Footer />
