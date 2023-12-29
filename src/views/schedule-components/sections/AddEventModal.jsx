@@ -50,9 +50,10 @@ const AddEventModal = ({ isOpen, onClose, onSave }) => {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
+                access_token: window.localStorage.getItem('token'),
                 title: eventTitle,
-                start: meeting ? `${startEventDate}T${startTime}:00` : startEventDate,
-                end: meeting ? `${startEventDate}T${endTime}:00` : endEventDate,
+                start: meeting ? `${startEventDate}T${startTime}:00` : `${startEventDate}T00:00:00`,
+                end: meeting ? `${startEventDate}T${endTime}:00` : `${endEventDate}T00:00:00`,
                 memo: eventMemo,
                 meeting: meeting,
             }),
