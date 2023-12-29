@@ -21,7 +21,7 @@ const HeaderBanner = () => {
                             <br /> " New Keyword Tool "
                         </h4>
                         <Link
-                            to="/login"
+                            to="/signin"
                             className="btn btn-md m-t-40 btn-info-gradiant font-16"
                             style={{ marginTop: "100px" }}
                         >

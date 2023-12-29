@@ -54,8 +54,8 @@ const HeaderBanner3 = () => {
                                 </Link>
                             </NavItem>
                             <NavItem>
-                                <a className="btn btn-outline-info" href="/login">
-                                    Login
+                                <a className="btn btn-outline-info" href="/signin">
+                                    Sign In
                                 </a>
                             </NavItem>
                         </Nav>

@@ -53,7 +53,7 @@ const HeaderBanner4 = () => {
                                 </Link>
                             </NavItem>
                             <NavItem>
-                                <a className="btn btn-outline-info" href="#">
+                                <a className="btn btn-outline-info" href="/">
                                     Logout
                                 </a>
                             </NavItem>
