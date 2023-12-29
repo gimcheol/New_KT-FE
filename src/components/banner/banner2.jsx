@@ -3,9 +3,23 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Card, CardBody, CardTitle, CardText, CardHeader } from "reactstrap";
 
+const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString();
+};
+
+const formatTimeRange = (startString, endString) => {
+    const startDate = new Date(startString);
+    const endDate = new Date(endString);
+    const startTime = startDate.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    const endTime = endDate.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    return `${startTime} - ${endTime}`;
+};
+
 const HeaderBanner2 = () => {
     const [schedule, setSchedule] = useState([
-        {id:6, title: '그룹미팅', start: '2023-12-28T16:10:00', end: '2023-12-28T17:00:00', memo: '그룹미팅 준비해두기 1시간 30분 소요 예정', },
+        // 현재 시간 기준으로 가장 가까운 일정만 백엔드에서 가져오기
+        {id:6, title: '그룹미팅', start: '2023-12-29T13:10:00', end: '2023-12-29T14:00:00', memo: '그룹미팅 준비해두기 1시간 30분 소요 예정', },
     ]);
 
     // useEffect(() => {
@@ -26,10 +40,13 @@ const HeaderBanner2 = () => {
                             schedule.map(event => (
                                 <Card key={event.id} className="m-t-20">
                                     <CardHeader>
-                                        {event.title}</CardHeader>
+                                        <div className="fs-4">{event.title}</div>
+                                    </CardHeader>
                                     <CardBody>
-                                        <CardTitle>{event.title}</CardTitle>
-                                        <CardText>{event.description}</CardText>
+                                        <CardText>
+                                            <div className="fs-2">{formatTimeRange(event.start, event.end)}</div>
+                                            <div className="fs-6">{event.memo}</div>
+                                        </CardText>
                                     </CardBody>
                                 </Card>
                             ))
@@ -41,7 +58,14 @@ const HeaderBanner2 = () => {
                             className="btn btn-md m-t-40 btn-info-gradiant font-16"
                             style={{ marginTop: "20px" }}
                         >
-                            Meeting
+                            Join
+                        </Link>
+                        <Link
+                            to="/meeting"
+                            className="btn btn-md m-t-40 btn-warning font-16"
+                            style={{ marginTop: "20px", marginLeft: "20px"}}
+                        >
+                            New
                         </Link>
                     </Col>
                 </Row>
