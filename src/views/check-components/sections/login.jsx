@@ -3,11 +3,16 @@ import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from "reac
 import { Link } from "react-router-dom";
 
 const PageLogin = () => {
-    const [userName, setUserName] = useState("");
+    // const [userName, setUserName] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleUserNameChange = (e) => {
-        setUserName(e.target.value);
+    // const handleUserNameChange = (e) => {
+    //     setUserName(e.target.value);
+    // };
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
     };
 
     const handlePasswordChange = (e) => {
@@ -24,7 +29,8 @@ const PageLogin = () => {
             },
 
             body: JSON.stringify({
-                "username": userName,
+                // "username": userName,
+                "email": email,
                 "password": password,
             }),
         })
@@ -35,11 +41,11 @@ const PageLogin = () => {
             return res.json();
         })
         .then(res => {
-            localStorage.setItem('accessToken', res.access);
-            localStorage.setItem('refreshToken', res.refresh);
+            localStorage.setItem('token', res.access_token);
+            localStorage.setItem('user_id', res.user_id);
             
             alert(`${res.username}님 환영합니다.`);
-            window.location.href = "/Home";
+            window.location.replace('/Home')
 
         })
         .catch((err) => {
@@ -53,7 +59,7 @@ const PageLogin = () => {
                 <Container>
                     <Row className="justify-content-center">
                         <Col md="7" className="text-center">
-                            <h1 className="title font-bold">Login</h1>
+                            <h1 className="title font-bold">Sign in</h1>
                             <h6 className="subtitle">
                                 Here you can check Demos we created based on
                                 WrapKit. It's quite easy to create your own
@@ -68,14 +74,14 @@ const PageLogin = () => {
                     <Col md="6" style={{ paddingBottom: "180px" }}>
                         <Form>
                             <FormGroup>
-                                <Label htmlFor="name">ID</Label>
+                                <Label htmlFor="name">Email</Label>
                                 <Input
                                     type="text"
                                     className="form-control"
                                     id="name"
-                                    placeholder="a000000"
-                                    value={userName}
-                                    onChange={handleUserNameChange}
+                                    placeholder="a000000@aivle.kt.co.kr"
+                                    value={email}
+                                    onChange={handleEmailChange}
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -113,9 +119,9 @@ const PageLogin = () => {
                                 >
                                     Submit
                                 </Button>
-                                <Link to="/join">
+                                <Link to="/signup">
                                     <Button className="btn btn-inverse waves-effect waves-light">
-                                        Join
+                                        Sign up
                                     </Button>
                                 </Link>
                             </div>

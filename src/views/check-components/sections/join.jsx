@@ -36,7 +36,7 @@ const validatePwd = (password) => {
 
 
 const SignupForm = () => {
-    const [userName, setUserName] = useState("");
+    // const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -50,9 +50,9 @@ const SignupForm = () => {
         const emailValue = e.target.value;
         setEmail(emailValue);
 
-        // "@" 기호 이전의 부분을 username으로 설정
-        const usernameFromEmail = emailValue.split('@')[0];
-        setUserName(usernameFromEmail);
+        // // "@" 기호 이전의 부분을 username으로 설정
+        // const usernameFromEmail = emailValue.split('@')[0];
+        // setUserName(usernameFromEmail);
     };
 
     const handlePasswordChange = (e) => {
@@ -114,7 +114,7 @@ const SignupForm = () => {
             },
 
             body: JSON.stringify({
-                "username": userName,
+                // "username": userName,
                 "email": email,
                 "password": password,
                 "password2": confirmPassword,
@@ -127,7 +127,7 @@ const SignupForm = () => {
         })
         .then(res => {
             alert("회원 가입이 완료되었습니다.");
-            window.location.href = "/login";
+            window.location.href = "/singin";
         })
         .catch((err) => {
             console.error(err);
@@ -144,7 +144,7 @@ const SignupForm = () => {
                 <Container>
                     <Row className="justify-content-center">
                         <Col md="7" className="text-center">
-                            <h1 className="title font-bold">Join</h1>
+                            <h1 className="title font-bold">Create account</h1>
                             <h6 className="subtitle">
                                 Here you can check Demos we created based on
                                 WrapKit. Its quite easy to Create your own dream
