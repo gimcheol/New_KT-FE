@@ -50,12 +50,12 @@ const AddEventModal = ({ isOpen, onClose, onSave }) => {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                access_token: window.localStorage.getItem('token'),
-                title: eventTitle,
-                start: meeting ? `${startEventDate}T${startTime}:00` : `${startEventDate}T00:00:00`,
-                end: meeting ? `${startEventDate}T${endTime}:00` : `${endEventDate}T00:00:00`,
-                memo: eventMemo,
-                meeting: meeting,
+                "access_token": window.localStorage.getItem('token'),
+                "title": eventTitle,
+                "start": meeting ? `${startEventDate}T${startTime}:00` : `${startEventDate}T00:00:00`,
+                "end": meeting ? `${startEventDate}T${endTime}:00` : `${endEventDate}T00:00:00`,
+                "memo": eventMemo,
+                "meeting": meeting,
             }),
         })
         .then(res => {
@@ -76,6 +76,9 @@ const AddEventModal = ({ isOpen, onClose, onSave }) => {
             setMeetingDay(false);
             setEventMemo("");
             onClose();
+
+            // 페이지를 새로고침
+            window.location.reload();
         })
         .catch((err) => {
             console.error(err);
