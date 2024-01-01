@@ -14,6 +14,7 @@ import {
 } from "reactstrap";
 
 import logo from "../../assets/images/logos/New_KT_header.png";
+import LogoutButton from "./Logout.jsx";
 
 const HeaderBanner4 = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -52,11 +53,12 @@ const HeaderBanner4 = () => {
                                     About
                                 </Link>
                             </NavItem>
-                            <NavItem>
+                            {/* <NavItem>
                                 <a className="btn btn-outline-info" href="/">
                                     Logout
                                 </a>
-                            </NavItem>
+                            </NavItem> */}
+                            <LogoutButton />
                         </Nav>
                     </Collapse>
                 </Navbar>

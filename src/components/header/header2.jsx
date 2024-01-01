@@ -13,6 +13,7 @@ import {
 } from "reactstrap";
 
 import logo from "../../assets/images/logos/New_KT_header.png";
+import LogoutButton from "./Logout2.jsx";
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +29,7 @@ const Header = () => {
             <div className="header6">
                 <Container className="po-relative">
                     <Navbar className="navbar-expand-lg h6-nav-bar">
-                        <NavbarBrand href="/">
+                        <NavbarBrand href="/home">
                             <img
                                 src={logo}
                                 alt="wrapkit"
@@ -61,14 +62,15 @@ const Header = () => {
                                     </Link>
                                 </NavItem>
                             </Nav>
-                            <div className="act-buttons">
+                            <LogoutButton />
+                            {/* <div className="act-buttons">
                                 <Link
                                     to={"/"}
                                     className="btn btn-success-gradiant font-14"
                                 >
                                     Logout
                                 </Link>
-                            </div>
+                            </div> */}
                         </Collapse>
                     </Navbar>
                 </Container>
