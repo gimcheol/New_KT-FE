@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
-import { Container, Row, Col, Card, CardBody, CardTitle, CardText, CardHeader } from "reactstrap";
-
-const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString();
-};
+import { Container, Row, Col, Card, CardBody, CardText, CardHeader } from "reactstrap";
 
 const formatTimeRange = (startString, endString) => {
     const startDate = new Date(startString);

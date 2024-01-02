@@ -10,58 +10,23 @@ import AddEventModal from "./AddEventModal.jsx";
 import EventModal from './EventModal.jsx';
 
 import "../css/mycalendar.css";
-import { info } from "sass";
 
 const MyCalendar = () => {
     const [isAddEventModalOpen, setAddEventModalOpen] = useState(false);
     const [isEventModalOpen, setEventModalOpen] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState(null);
 
-    const [events, setEvents] = useState([
-        { id: 1, title: 'react1', date: ('2023-12-25'), meeting: true,
-            keyword: 'react', summary: 'react를 공부합니다.',
-            article_link : ['https://www.naver.com', 'https://www.google.com'],
-            article_title : ['네이버', '구글']},
-        { id:2, title: 'Meeting2', start: ('2023-12-30T12:00:00'), end: '2023-12-30T12:00:00',
-            meeting: false,
-            keyword: 'react', summary: 'react를 공부합니다.',
-            article_link : ['https://www.naver.com', 'https://www.google.com'],
-            article_title : ['네이버', '구글']},
-        {
-            id: 3,
-            title: 'Test2',
-            start: ('2023-12-05'),
-            end: ('2023-12-07'),
-            meeting: false,
-            keyword: 'react',
-            summary: 'react를 공부합니다.',
-            // article_link : ['https://www.naver.com', 'https://www.google.com'],
-            // article_title : ['네이버', '구글']
-        },
-        {id:4, title: '연습1', start: '2023-12-27', end: '2023-12-29', memo: '연습입니다!',
-            meeting: true, keyword: '연습', summary: '연습 중',
-            article_link : ['https://www.naver.com', 'https://www.google.com'],
-            article_title : ['네이버', '구글']},
-        {id:5, title: '연습2', start: '2023-12-27T23:10:00', end: '2023-12-27T23:17:00', memo: '연습22',
-            meeting: false, keyword: '연습', summary: '연습 중',
-            article_link : ['https://www.naver.com', 'https://www.google.com'],
-            article_title : ['네이버', '구글']},
-        {id:6, title: '그룹미팅', start: '2023-12-28T16:10:00', end: '2023-12-27T17:00:00', memo: '그룹미팅 준비해두기 1시간 30분 소요 예정',
-            meeting: false, keyword: '마약', summary: '마약 안돼요',
-            article_link : ['https://www.naver.com', 'https://www.google.com'],
-            article_title : ['네이버', '구글'],
-        },
-    ]);
+    const [events, setEvents] = useState([]);
 
     useEffect(() => {
         const token = window.localStorage.getItem('token');
-    
+        
         if (token) {
-            fetch("http://127.0.0.1:8000/api/token/schedule", {
+            fetch("http://127.0.0.1:8000/schedule/", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`,  // 토큰을 Authorization 헤더에 포함
+                    "Authorization": `Token ${token}`,
                 },
             })
             .then(res => {
@@ -71,18 +36,23 @@ const MyCalendar = () => {
                 return res.json();
             })
             .then(now_event => {
-                // 데이터를 FullCalendar의 형식에 맞게 가공
-                const formattedEvents = now_event.map(event => ({
-                    id: event.id,
-                    title: event.title,
-                    start: event.start,
-                    end: event.end,
-                    meeting: event.meeting,
-                }));
-    
-                // 가공한 데이터를 FullCalendar에 설정
-                setEvents(formattedEvents);
-                console.log("formattedEvents:", formattedEvents);
+                // 서버에서 받은 데이터가 배열인지 확인
+                if (Array.isArray(now_event.events)) {
+                    // 데이터를 FullCalendar의 형식에 맞게 가공
+                    const formattedEvents = now_event.events.map(event => ({
+                        id: event.id,
+                        title: event.title,
+                        start: event.start,
+                        end: event.end,
+                        meeting: event.meeting,
+                    }));
+            
+                    // 가공한 데이터를 FullCalendar에 설정
+                    setEvents(formattedEvents);
+                    console.log("formattedEvents:", formattedEvents);
+                } else {
+                    console.error("Received data does not contain an array of events:", now_event);
+                }
             })
             .catch((err) => {
                 console.error(err);
@@ -111,11 +81,11 @@ const MyCalendar = () => {
         const eventId = parseInt(event._def.publicId);
         const token = window.localStorage.getItem('token');
     
-        fetch(`http://127.0.0.1:8000/api/token/schedule/${eventId}`, {
+        fetch(`eventclick/${eventId}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`,
+                "Authorization": `Token ${token}`,
             },
         })
         .then(res => {
@@ -155,7 +125,7 @@ const MyCalendar = () => {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`,
+                "Authorization": `Token ${token}`,
             },
         })
         .then(res => {
