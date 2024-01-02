@@ -42,7 +42,6 @@ const PageLogin = () => {
         })
         .then(res => {
             localStorage.setItem('token', res.access_token);
-            localStorage.setItem('user_id', res.user_id);
             
             alert(`${res.username}님 환영합니다.`);
             window.location.replace('/Home')

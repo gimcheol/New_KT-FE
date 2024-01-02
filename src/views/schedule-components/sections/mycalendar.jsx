@@ -119,10 +119,9 @@ const MyCalendar = () => {
             },
         })
         .then(res => {
-            if (!res.ok) {
-                throw new Error(`HTTP error! Status: ${res.status}`);
-            }
-            return res.json();
+            if (res.status !== 201) {
+                throw Error(res);
+            } return res.json();
         })
         .then(eventDetails => {
             // 클릭한 이벤트 객체에 서버에서 가져온 추가 정보를 추가하여 modal 상태를 업데이트
