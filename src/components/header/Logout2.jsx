@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const LogoutButton = () => {
     const onLogout = () => {
-        const token = window.localStorage.getItem("token");
+
         fetch(
             "http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/logout/",
             {
@@ -30,7 +30,7 @@ const LogoutButton = () => {
     return (
         <div className="act-buttons">
             <Link
-                // to={"/"}
+                to={"/"}
                 className="btn btn-success-gradiant font-14"
                 onClick={onLogout}
             >

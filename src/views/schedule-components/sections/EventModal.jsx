@@ -8,7 +8,6 @@ import {
     Button,
     Col,
     Row,
-    Container,
 } from "reactstrap";
 import "../css/EventModal.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

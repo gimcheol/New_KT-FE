@@ -10,8 +10,7 @@
 
 // export default App;
 
-import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes, Switch } from "react-router-dom";
+import { BrowserRouter as Route, Routes } from "react-router-dom";
 import React from "react";
 
 import Components from "./views/components/components.jsx";
