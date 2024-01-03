@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 const LogoutButton = () => {
     const onLogout = () => {
+ 
         fetch(
             "http://127.0.0.1:8000/users/logout/",
             {
@@ -32,6 +33,7 @@ const LogoutButton = () => {
     return (
         <div className="act-buttons">
             <Link
+                // to={"/"}
                 className="btn btn-success-gradiant font-14"
                 onClick={onLogout}
             >

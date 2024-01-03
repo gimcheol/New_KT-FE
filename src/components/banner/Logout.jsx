@@ -14,7 +14,7 @@ const LogoutButton = () => {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                "access_token": window.localStorage.getItem('token'),
+                "access_token": token,
             }),
         })
         .then((res) => res.json())
@@ -31,7 +31,7 @@ const LogoutButton = () => {
     return (
         <NavItem>
             {/* <a className="btn btn-outline-info" href="/"> */}
-            <a className="btn btn-outline-info" onClick={onLogout}>
+            <a href="/" className="btn btn-outline-info" onClick={onLogout}>
                 Logout
             </a>
         </NavItem>

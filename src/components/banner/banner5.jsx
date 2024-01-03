@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
-    Row,
-    Col,
     Container,
     NavbarBrand,
     Navbar,
     Nav,
     NavItem,
-    NavLink,
     NavbarToggler,
     Collapse,
 } from "reactstrap";
