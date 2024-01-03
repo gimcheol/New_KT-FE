@@ -19,15 +19,15 @@ const formatTimeRange = (startString, endString) => {
 const HeaderBanner2 = () => {
     const [schedule, setSchedule] = useState([
         // 현재 시간 기준으로 가장 가까운 일정만 백엔드에서 가져오기
-        // {id:6, title: '그룹미팅', start: '2023-12-29T13:10:00', end: '2023-12-29T14:00:00', memo: '그룹미팅 준비해두기 1시간 30분 소요 예정', },
+         {id:6, title: '그룹미팅', start: '2023-12-29T13:10:00', end: '2023-12-29T14:00:00', memo: '그룹미팅 준비해두기 1시간 30분 소요 예정', },
     ]);
 
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/token/home", {
+        fetch("http://127.0.0.1:8000/schedule/loginhome/", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${window.localStorage.getItem('token')}`,
+                "Authorization": `Token ${window.localStorage.getItem('token')}`,
             },
         })
         .then(res => {

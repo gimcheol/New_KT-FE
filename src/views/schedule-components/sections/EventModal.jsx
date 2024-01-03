@@ -98,7 +98,7 @@ const EventModal = ({
                             <Col>
                                 <h3>키워드</h3>
                                 <div>
-                                    <p>{eventKeyword}</p>
+                                    <p>{eventKeyword}</p>   
                                 </div>
                             </Col>
                             <Col>

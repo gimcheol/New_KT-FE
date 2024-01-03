@@ -55,13 +55,13 @@ const MyCalendar = () => {
 
     useEffect(() => {
         const token = window.localStorage.getItem('token');
-    
+        
         if (token) {
-            fetch("http://127.0.0.1:8000/api/token/schedule", {
+            fetch("http://127.0.0.1:8000/schedule/", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`,  // 토큰을 Authorization 헤더에 포함
+                    "Authorization": `Token ${token}`,
                 },
             })
             .then(res => {
@@ -71,24 +71,31 @@ const MyCalendar = () => {
                 return res.json();
             })
             .then(now_event => {
-                // 데이터를 FullCalendar의 형식에 맞게 가공
-                const formattedEvents = now_event.map(event => ({
-                    id: event.id,
-                    title: event.title,
-                    start: event.start,
-                    end: event.end,
-                    meeting: event.meeting,
-                }));
-    
-                // 가공한 데이터를 FullCalendar에 설정
-                setEvents(formattedEvents);
-                console.log("formattedEvents:", formattedEvents);
+                // 서버에서 받은 데이터가 배열인지 확인
+                if (Array.isArray(now_event.events)) {
+                    // 데이터를 FullCalendar의 형식에 맞게 가공
+                    const formattedEvents = now_event.events.map(event => ({
+                        id: event.id,
+                        title: event.title,
+                        start: event.start,
+                        end: event.end,
+                        meeting: event.meeting,
+                    }));
+            
+                    // 가공한 데이터를 FullCalendar에 설정
+                    setEvents(formattedEvents);
+                    console.log("formattedEvents:", formattedEvents);
+                } else {
+                    console.error("Received data does not contain an array of events:", now_event);
+                }
             })
             .catch((err) => {
-                console.error(err);
-            });
+    console.error("Error in handleEventClick:", err);
+    console.error("Error details:", err.message);
+    });
         }
-    }, []);
+    },
+    []);
     
 
     const handleAddButton=()=>{
@@ -106,32 +113,51 @@ const MyCalendar = () => {
     //     setEventModalOpen(true);
     // };
 
+
     const handleEventClick = (clickInfo) => {
         const { event } = clickInfo;
         const eventId = parseInt(event._def.publicId);
         const token = window.localStorage.getItem('token');
-    
-        fetch(`http://127.0.0.1:8000/api/token/schedule/${eventId}`, {
+        
+        fetch(`http://127.0.0.1:8000/schedule/eventclick/${eventId}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`,
+                "Authorization": `Token ${token}`,
             },
         })
+            // .then(res => {
+            //     if (res.status !== 201) {
+            //         throw Error(res);
+            //     } return res.json();
+            // })
         .then(res => {
-            if (res.status !== 201) {
-                throw Error(res);
-            } return res.json();
+            if (!res.ok) {
+                throw new Error(`HTTP error! Status: ${res.status}`);
+            }
+            return res.json();
         })
         .then(eventDetails => {
             // 클릭한 이벤트 객체에 서버에서 가져온 추가 정보를 추가하여 modal 상태를 업데이트
+            // setSelectedEvent({
+            //     ...event,
+            //     keyword: eventDetails.keyword,
+            //     summary: eventDetails.summary,
+            //     article_link: eventDetails.article_link,
+            //     article_title: eventDetails.article_title,
+            //     memo: eventDetails.memo,
+            // });
             setSelectedEvent({
-                ...event,
-                keyword: eventDetails.keyword,
-                summary: eventDetails.summary,
-                article_link: eventDetails.article_link,
-                article_title: eventDetails.article_title,
+                id: eventDetails.id,
+                title: eventDetails.title,
                 memo: eventDetails.memo,
+                start: eventDetails.start,
+                end: eventDetails.end,
+                meeting: eventDetails.meeting,
+                keyword: eventDetails.keyword || '', // 값이 없을 경우에 대비하여 기본값 처리
+                summary: eventDetails.summary || '',
+                article_link: eventDetails.article_link || '',
+                article_title: eventDetails.article_title || ''
             });
             setEventModalOpen(true);
         })
@@ -139,8 +165,7 @@ const MyCalendar = () => {
             console.error(err);
         });
     };
-    
-
+        
     // // 이벤트 삭제 함수
     // const handleDeleteEvent = (eventId) => {
     //     setEvents((prevEvents) => prevEvents.filter((event) => event.id !== eventId));
@@ -151,11 +176,11 @@ const MyCalendar = () => {
         const token = window.localStorage.getItem('token');
 
         // 서버에 삭제 요청 보내기
-        fetch(`http://127.0.0.1:8000/api/token/schedule/${eventId}`, {
+        fetch(`http://127.0.0.1:8000/schedule/eventdelete/${eventId}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`,
+                "Authorization": `Token ${token}`,
             },
         })
         .then(res => {
